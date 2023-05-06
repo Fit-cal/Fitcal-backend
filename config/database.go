@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fitcal-backend/domain"
 	"fmt"
 	"log"
 
@@ -36,12 +35,4 @@ func (c *ConfigDB) Read() {
 	if _, err := toml.DecodeFile("config.toml", &c); err != nil {
 		log.Fatal(err)
 	}
-}
-func (c ConfigDB) GetUserName() (*domain.User, error) {
-	var result *domain.User
-	result = &domain.User{
-		Name:  "sabir",
-		Email: "sabirbarahi41@gmail.com",
-	}
-	return result, nil
 }

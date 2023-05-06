@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	"fitcal-backend/config"
+	dataaccess "fitcal-backend/infrastructure/dataaccess/mysql"
 	"fitcal-backend/interface/controllers"
 	"fitcal-backend/interface/interactor"
 	"fitcal-backend/interface/repository"
@@ -12,11 +12,11 @@ import (
 )
 
 var (
-	dbHandler config.ConfigDB
+	testDB dataaccess.TestRepository
 )
 
 func getTestController() controllers.TestController {
-	TestRepository := repository.NewTestRepo(dbHandler)
+	TestRepository := repository.NewTestRepo(&testDB)
 	testInteractor := interactor.NewTestInteractor(TestRepository)
 	testController := controllers.NewTestController(testInteractor)
 	return *testController

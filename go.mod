@@ -2,7 +2,12 @@ module fitcal-backend
 
 go 1.20
 
-require github.com/labstack/echo/v4 v4.10.2
+require (
+	github.com/BurntSushi/toml v1.2.1
+	github.com/labstack/echo/v4 v4.10.2
+	gorm.io/driver/mysql v1.5.0
+	gorm.io/gorm v1.25.0
+)
 
 require (
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
@@ -19,6 +24,4 @@ require (
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
-	gorm.io/driver/mysql v1.5.0 // indirect
-	gorm.io/gorm v1.25.0 // indirect
 )

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fitcal-backend/routers"
+	"fitcal-backend/infrastructure"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -10,6 +10,6 @@ import (
 func main() {
 	e := echo.New()
 	e.Use(middleware.CORS())
-	routers.Router(e)
+	infrastructure.Router(e)
 	e.Logger.Fatal(e.Start(":8080"))
 }

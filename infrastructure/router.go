@@ -28,7 +28,7 @@ func Router(e *echo.Echo) {
 
 	e.GET("/", func(c echo.Context) error {
 		log.Print("health check")
-		return c.JSON(http.StatusOK, "Health check")
+		return c.JSON(http.StatusOK, "Health check: status Healthy")
 	})
 	api := e.Group("/api")
 

@@ -62,12 +62,12 @@ http://localhost:8080/
 ```
 This should give a message that looks like following.
 
-[image here]
+<img width="278" alt="image" src="https://user-images.githubusercontent.com/50660976/236676047-2cd3a8ea-2106-43be-bfee-a12c66dc7453.png">
 
 ## Running the project in debug mode
 
 NOTE: This is strictly for `VScode` users only.
 
-To start the project in `Debug-mode` first open the project on your `VScode` then navigate to `Run & Debug` on the side-bar. It's the button that looks like [Image here] then press the play button on the top. There you have the project running on `Debug-mode`.
+To start the project in `Debug-mode` first open the project on your `VScode` then navigate to `Run & Debug` on the side-bar. It's the button that looks like ![image](https://user-images.githubusercontent.com/50660976/236676081-3e7d68df-80b3-40d4-911b-1e68437fabd8.png) then press the play button on the top. There you have the project running on `Debug-mode`.
 
 Or alternatively just press the `F5` key on your keyboard.

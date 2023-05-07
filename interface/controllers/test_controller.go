@@ -3,7 +3,6 @@ package controllers
 import (
 	"fitcal-backend/domain"
 	"fitcal-backend/interface/interactor"
-	"log"
 )
 
 type TestController struct {
@@ -14,10 +13,12 @@ func NewTestController(i interactor.TestInteractor) *TestController {
 	return &TestController{i}
 }
 
-func (c *TestController) TestControllerTest() *domain.User {
-	result, err := c.testInteractor.TestRepository.GetUserName()
-	if err != nil {
-		log.Fatal(err)
-	}
+func (c *TestController) GetUserName() domain.User {
+	result := c.testInteractor.GetUserName()
+	return result
+}
+
+func (c *TestController) GetAllUsers() []domain.User {
+	result := c.testInteractor.GetAllUsers()
 	return result
 }

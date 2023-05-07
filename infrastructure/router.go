@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	dataaccess "fitcal-backend/infrastructure/dataaccess/mysql"
+	"fitcal-backend/dataaccess"
 	"fitcal-backend/interface/controllers"
 	"fitcal-backend/interface/interactor"
 	"fitcal-backend/interface/repository"
@@ -12,11 +12,11 @@ import (
 )
 
 var (
-	testDB dataaccess.TestRepository
+	DB dataaccess.TestRepository
 )
 
 func getTestController() controllers.TestController {
-	TestRepository := repository.NewTestRepo(&testDB)
+	TestRepository := repository.NewTestRepo(&DB)
 	testInteractor := interactor.NewTestInteractor(TestRepository)
 	testController := controllers.NewTestController(testInteractor)
 	return *testController
@@ -24,7 +24,7 @@ func getTestController() controllers.TestController {
 
 func Router(e *echo.Echo) {
 
-	testRepository := getTestController()
+	testController := getTestController()
 
 	e.GET("/", func(c echo.Context) error {
 		log.Print("health check")
@@ -33,7 +33,11 @@ func Router(e *echo.Echo) {
 	api := e.Group("/api")
 
 	api.GET("/", func(c echo.Context) error {
-		log.Print("connection made")
-		return c.JSON(http.StatusOK, testRepository.TestControllerTest())
+		log.Print("get user name -->>")
+		return c.JSON(http.StatusOK, testController.GetUserName())
+	})
+	api.GET("/users", func(c echo.Context) error {
+		log.Print("get all users -->>")
+		return c.JSON(http.StatusOK, testController.GetAllUsers())
 	})
 }

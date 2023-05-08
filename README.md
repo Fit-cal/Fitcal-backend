@@ -24,7 +24,7 @@ Fit-Cal will also be providing a basic workout tracker feature.
 If you want a copy of the Backend(This repository) of the project you can clone the project with.
 
 ``` 
-git@github.com:Fit-cal/Fitcal-backend.git
+git clone git@github.com:Fit-cal/Fitcal-backend.git
 ```
 
 ## Creating a MySql database for development

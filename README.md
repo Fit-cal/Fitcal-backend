@@ -44,7 +44,7 @@ To create a MySql database for development purposes use the following command.
 
 ## Migrations
 
-After the database has been creted follow the steps on [Fitcal-Migrations](https://github.com/Fit-cal/Fitcal-Migrations) to get all the migrations and get the database ready.
+After the database has been created follow the steps on [Fitcal-Migrations](https://github.com/Fit-cal/Fitcal-Migrations) to get all the migrations and get the database ready.
 
 ## Running the project
 

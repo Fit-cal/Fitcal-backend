@@ -1,4 +1,4 @@
-package config
+package infrastructure
 
 import (
 	"fmt"
@@ -9,8 +9,6 @@ import (
 	"gorm.io/gorm"
 )
 
-var config = ConfigDB{}
-
 type ConfigDB struct {
 	User     string
 	Password string
@@ -19,10 +17,9 @@ type ConfigDB struct {
 	Dbname   string
 }
 
-func ConnectDB() (*gorm.DB, error) {
-	config.Read()
+func Connection() (*gorm.DB, error) {
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", config.User, config.Password, config.Host, config.Port, config.Dbname)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", "fitcal", "root", "localhost", "3306", "fitcal")
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {

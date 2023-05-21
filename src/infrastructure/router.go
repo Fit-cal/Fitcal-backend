@@ -1,43 +1,32 @@
 package infrastructure
 
 import (
-	"fitcal-backend/dataaccess"
-	"fitcal-backend/interface/controllers"
-	"fitcal-backend/interface/interactor"
-	"fitcal-backend/interface/repository"
+	"fitcal-backend/controllers"
+	"fitcal-backend/domain/interactor"
+	"fitcal-backend/domain/repository"
 	"log"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
 
-var (
-	DB dataaccess.TestRepository
-)
-
-func getTestController() controllers.TestController {
-	TestRepository := repository.NewTestRepo(&DB)
-	testInteractor := interactor.NewTestInteractor(TestRepository)
-	testController := controllers.NewTestController(testInteractor)
-	return *testController
-}
-
 func Router(e *echo.Echo) {
+	db, err := Connection()
+	if err != nil {
+		log.Fatal("Failed to connect to the database:", err)
+	}
 
-	testController := getTestController()
+	userRepo := repository.NewUserRepository(db)
+	userInteractor := interactor.NewUserInteractor(userRepo)
+	userController := controllers.NewUserController(userInteractor)
 
-	e.GET("/", func(c echo.Context) error {
-		log.Print("health check")
-		return c.JSON(http.StatusOK, "Health check: status Healthy")
-	})
 	api := e.Group("/api")
-
-	api.GET("/", func(c echo.Context) error {
-		log.Print("get user name -->>")
-		return c.JSON(http.StatusOK, testController.GetUserName())
-	})
 	api.GET("/users", func(c echo.Context) error {
-		log.Print("get all users -->>")
-		return c.JSON(http.StatusOK, testController.GetAllUsers())
+		log.Print("GetUsers -->>")
+		return c.JSON(http.StatusOK, userController.GetUser(c))
+	})
+	api.GET("/search/users", func(c echo.Context) error {
+		log.Print("SearchUsers -->>")
+		return c.JSON(http.StatusOK, userController.SearchUser(c))
 	})
 }

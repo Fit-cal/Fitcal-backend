@@ -29,4 +29,9 @@ func Router(e *echo.Echo) {
 		log.Print("SearchUsers -->>")
 		return c.JSON(http.StatusOK, userController.SearchUser(c))
 	})
+	api.POST("/create/user", func(c echo.Context) error {
+		log.Print("CreateUser -->>")
+		userController.CreateUser(c)
+		return nil
+	})
 }

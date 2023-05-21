@@ -3,7 +3,9 @@ package controllers
 import (
 	"fitcal-backend/domain/entities"
 	"fitcal-backend/domain/interactor/inputport"
+	"fitcal-backend/response"
 	"log"
+	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
@@ -35,4 +37,25 @@ func (controller *UserController) SearchUser(c echo.Context) []entities.User {
 		return nil
 	}
 	return result
+}
+
+func (controller *UserController) CreateUser(c echo.Context) {
+	var query entities.User
+	var res response.CommonRes
+	err := c.Bind(&query)
+	if err != nil {
+		res.Message = err.Error()
+		c.JSON(http.StatusBadRequest, res)
+		return
+	}
+
+	if err = controller.userInteractor.CreateUser(&query); err != nil {
+		log.Print(err)
+		res.Message = err.Error()
+		c.JSON(http.StatusBadRequest, res)
+		return
+	}
+	res.Message = "user created!"
+	c.JSON(http.StatusOK, res)
+	return
 }

@@ -36,3 +36,13 @@ func (repository *UserRepository) SearchUsers(keyword string) ([]entities.User, 
 	}
 	return users, nil
 }
+
+func (repository *UserRepository) CreateUser(query entities.User) error {
+	db := repository.db
+
+	if err := db.Create(&query).Error; err != nil {
+		return err
+	}
+
+	return nil
+}

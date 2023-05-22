@@ -21,14 +21,19 @@ func Router(e *echo.Echo) {
 	userController := controllers.NewUserController(userInteractor)
 
 	api := e.Group("/api")
+	// Gets all user information
 	api.GET("/users", func(c echo.Context) error {
 		log.Print("GetUsers -->>")
 		return c.JSON(http.StatusOK, userController.GetUser(c))
 	})
+
+	// Gets user information according to the search query
 	api.GET("/search/users", func(c echo.Context) error {
 		log.Print("SearchUsers -->>")
 		return c.JSON(http.StatusOK, userController.SearchUser(c))
 	})
+
+	// Creates a new user if the user doesnot already exist
 	api.POST("/create/user", func(c echo.Context) error {
 		log.Print("CreateUser -->>")
 		userController.CreateUser(c)

@@ -17,6 +17,7 @@ func NewUserRepository(db *gorm.DB) *UserRepository {
 	}
 }
 
+// GetUsers gets all user
 func (repository *UserRepository) GetUsers() ([]entities.User, error) {
 	db := repository.db
 	var users []entities.User
@@ -26,6 +27,7 @@ func (repository *UserRepository) GetUsers() ([]entities.User, error) {
 	return users, nil
 }
 
+// SearchUsers searches for specific user
 func (repository *UserRepository) SearchUsers(keyword string) ([]entities.User, error) {
 	db := repository.db
 
@@ -37,6 +39,7 @@ func (repository *UserRepository) SearchUsers(keyword string) ([]entities.User, 
 	return users, nil
 }
 
+// CreateUser creates a new user if the user doesnot exist
 func (repository *UserRepository) CreateUser(query entities.User) error {
 	db := repository.db
 

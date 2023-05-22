@@ -13,6 +13,7 @@ Fit-Cal will also be providing a basic workout tracker feature.
 - [Gorm](https://gorm.io/docs/index.html) : Is the selected ORM.
 - [Mysql](https://www.mysql.com/jp/) : Is the selected DATABSE.
 - [Echo](https://echo.labstack.com/) : Is the selected Goland framework.
+- [Zerologger](https://github.com/rs/zerolog) : Is the selected logger
 
 # Pre-requisites
 - [Docker](https://www.docker.com/)

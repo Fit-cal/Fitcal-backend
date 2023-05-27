@@ -43,6 +43,7 @@ func (controller *UserController) SearchUser(c echo.Context) []entities.User {
 func (controller *UserController) CreateUser(c echo.Context) {
 	var query entities.User
 	var res response.CommonRes
+
 	err := c.Bind(&query)
 	if err != nil {
 		res.Message = err.Error()
@@ -53,13 +54,13 @@ func (controller *UserController) CreateUser(c echo.Context) {
 
 	if err = controller.userInteractor.CreateUser(&query); err != nil {
 		res.Message = err.Error()
-		logger.Log(zerolog.WarnLevel, res.Message)
+		logger.Log(zerolog.ErrorLevel, res.Message)
 		c.JSON(http.StatusBadRequest, res)
 		return
 	}
+
 	res.Message = "user created!"
 	logger.Log(zerolog.InfoLevel, res.Message)
 	c.JSON(http.StatusOK, res)
-
 	return
 }

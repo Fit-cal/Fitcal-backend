@@ -22,6 +22,7 @@ func NewUserInteractor(userRepository inputport.UserRepositoryInputPort) *UserIn
 	}
 }
 
+// GetUsers
 func (interactor *UserInteractor) GetUsers() ([]entities.User, error) {
 	user, err := interactor.userRepository.GetUsers()
 	if err != nil {
@@ -30,6 +31,7 @@ func (interactor *UserInteractor) GetUsers() ([]entities.User, error) {
 	return user, nil
 }
 
+// SearchUsers
 func (interactor *UserInteractor) SearchUsers(keyword string) ([]entities.User, error) {
 	keyword = strings.Trim(keyword, `"`)
 	user, err := interactor.userRepository.SearchUsers(keyword)
@@ -39,6 +41,7 @@ func (interactor *UserInteractor) SearchUsers(keyword string) ([]entities.User, 
 	return user, nil
 }
 
+// CreateUser
 func (interactor *UserInteractor) CreateUser(query *entities.User) error {
 	validate := validator.New()
 	user, err := interactor.userRepository.SearchUsers(query.Email)

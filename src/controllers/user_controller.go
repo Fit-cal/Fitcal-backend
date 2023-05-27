@@ -21,6 +21,7 @@ func NewUserController(userInteractor inputport.UserInteractorInputPort) *UserCo
 	}
 }
 
+// GetUser gets all the existing user
 func (controller *UserController) GetUser(c echo.Context) []entities.User {
 	result, err := controller.userInteractor.GetUsers()
 	if err != nil {
@@ -30,6 +31,7 @@ func (controller *UserController) GetUser(c echo.Context) []entities.User {
 	return result
 }
 
+// SearchUser searches the database for users
 func (controller *UserController) SearchUser(c echo.Context) []entities.User {
 	keyword := c.QueryParam("s")
 	result, err := controller.userInteractor.SearchUsers(keyword)
@@ -40,6 +42,7 @@ func (controller *UserController) SearchUser(c echo.Context) []entities.User {
 	return result
 }
 
+// CreateUser creates a new user if the user doesnot already exist
 func (controller *UserController) CreateUser(c echo.Context) {
 	var query entities.User
 	var res response.CommonRes

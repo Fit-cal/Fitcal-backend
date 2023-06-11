@@ -6,3 +6,5 @@ type User struct {
 	LastName  string `json:"last_name" gorm:"last_name" validate:"required"`
 	Email     string `json:"email" gorm:"email" validate:"required"`
 }
+
+type Users []User

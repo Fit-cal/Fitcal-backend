@@ -49,10 +49,10 @@ func (mr *MockUserInteractorInputPortMockRecorder) CreateUser(query interface{})
 }
 
 // GetUsers mocks base method.
-func (m *MockUserInteractorInputPort) GetUsers() ([]entities.User, error) {
+func (m *MockUserInteractorInputPort) GetUsers() (entities.Users, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetUsers")
-	ret0, _ := ret[0].([]entities.User)
+	ret0, _ := ret[0].(entities.Users)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -64,10 +64,10 @@ func (mr *MockUserInteractorInputPortMockRecorder) GetUsers() *gomock.Call {
 }
 
 // SearchUsers mocks base method.
-func (m *MockUserInteractorInputPort) SearchUsers(keyword string) ([]entities.User, error) {
+func (m *MockUserInteractorInputPort) SearchUsers(keyword string) (entities.Users, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SearchUsers", keyword)
-	ret0, _ := ret[0].([]entities.User)
+	ret0, _ := ret[0].(entities.Users)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

@@ -30,7 +30,7 @@ func Router(e *echo.Echo) {
 	// Gets user information according to the search query
 	api.GET("/search/users", func(c echo.Context) error {
 		log.Print("SearchUsers -->>")
-		return c.JSON(http.StatusOK, userController.SearchUser(c))
+		return c.JSON(http.StatusOK, userController.SearchUsers(c))
 	})
 
 	// Creates a new user if the user doesnot already exist

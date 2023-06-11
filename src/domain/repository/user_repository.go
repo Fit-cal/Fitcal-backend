@@ -18,7 +18,7 @@ func NewUserRepository(db *gorm.DB) *UserRepository {
 }
 
 // GetUsers gets all user
-func (repository *UserRepository) GetUsers() ([]entities.User, error) {
+func (repository *UserRepository) GetUsers() (entities.Users, error) {
 	db := repository.db
 	var users []entities.User
 	if err := db.Model(&users).Find(&users).Error; err != nil {
@@ -33,6 +33,8 @@ func (repository *UserRepository) SearchUsers(keyword string) ([]entities.User, 
 
 	var users []entities.User
 	likeString := util.LikeStringBuilder(keyword)
+	// is the code below ok like this
+	// can we not do anything better???
 	if err := db.Model(&users).Where("first_name LIKE ?", likeString).Or("last_name LIKE ?", likeString).Or("email LIKE ?", likeString).Find(&users).Error; err != nil {
 		return nil, err
 	}

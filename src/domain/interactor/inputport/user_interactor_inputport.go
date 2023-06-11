@@ -5,7 +5,7 @@ import (
 )
 
 type UserInteractorInputPort interface {
-	GetUsers() ([]entities.User, error)
-	SearchUsers(keyword string) ([]entities.User, error)
+	GetUsers() (entities.Users, error)
+	SearchUsers(keyword string) (entities.Users, error)
 	CreateUser(query *entities.User) error
 }

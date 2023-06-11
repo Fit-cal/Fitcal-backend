@@ -12,18 +12,18 @@ import (
 )
 
 type UserController struct {
-	userInteractor inputport.UserInteractorInputPort
+	UserInteractor inputport.UserInteractorInputPort
 }
 
 func NewUserController(userInteractor inputport.UserInteractorInputPort) *UserController {
 	return &UserController{
-		userInteractor: userInteractor,
+		UserInteractor: userInteractor,
 	}
 }
 
 // GetUser gets all the existing user
 func (controller *UserController) GetUser(c echo.Context) []entities.User {
-	result, err := controller.userInteractor.GetUsers()
+	result, err := controller.UserInteractor.GetUsers()
 	if err != nil {
 		logger.Log(zerolog.ErrorLevel, err.Error())
 		return nil
@@ -32,9 +32,9 @@ func (controller *UserController) GetUser(c echo.Context) []entities.User {
 }
 
 // SearchUser searches the database for users
-func (controller *UserController) SearchUser(c echo.Context) []entities.User {
+func (controller *UserController) SearchUsers(c echo.Context) []entities.User {
 	keyword := c.QueryParam("s")
-	result, err := controller.userInteractor.SearchUsers(keyword)
+	result, err := controller.UserInteractor.SearchUsers(keyword)
 	if err != nil {
 		logger.Log(zerolog.PanicLevel, err.Error())
 		return nil
@@ -55,7 +55,7 @@ func (controller *UserController) CreateUser(c echo.Context) {
 		return
 	}
 
-	if err = controller.userInteractor.CreateUser(&query); err != nil {
+	if err = controller.UserInteractor.CreateUser(&query); err != nil {
 		res.Message = err.Error()
 		logger.Log(zerolog.ErrorLevel, res.Message)
 		c.JSON(http.StatusBadRequest, res)

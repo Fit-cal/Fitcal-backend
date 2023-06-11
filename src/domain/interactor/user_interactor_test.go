@@ -29,9 +29,9 @@ func TestGetUsers(t *testing.T) {
 		{
 			name: "fail",
 			prepareMockFn: func(ma *mock_inputport.MockUserRepositoryInputPort) {
-				ma.EXPECT().GetUsers().Return(entities.Users{{UserId: "test", FirstName: "test", LastName: "test", Email: ""}}, err)
+				ma.EXPECT().GetUsers().Return(entities.Users{{UserId: "", FirstName: "", LastName: "test", Email: "sabir@eaol.com"}}, err)
 			},
-			expected:    entities.Users{{UserId: "test", FirstName: "test", LastName: "test", Email: ""}},
+			expected:    entities.Users{{UserId: "", FirstName: "", LastName: "test", Email: "sabir@eaol.com"}},
 			expectedErr: err,
 		},
 	}
